@@ -47,5 +47,9 @@ class User extends Authenticatable
             'last_login_at' => 'datetime',
         ];
     }
+    public function reminders(){
+        return $this->hasMany(UserReminder::class);
+    }
+    
 
 }
