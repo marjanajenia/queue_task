@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Jobs\SendInactiveUserReminder;
 use App\Models\User;
 use Illuminate\Console\Command;
 
@@ -26,7 +27,7 @@ class SendInactiveUserReminders extends Command
      */
     public function handle()
     {
-        $sevenDaysAgo = now() -> subDays(7);
+        $sevenDaysAgo = now() -> subDays(3);
 
         $users = User::whereNotNull('last_login_at')
         ->where('last_login_at', '<=', $sevenDaysAgo)
